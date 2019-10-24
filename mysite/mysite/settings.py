@@ -37,6 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'channels',
+    'django_plotly_dash.apps.DjangoPlotlyDashConfig',
+
+    'basegraph.apps.BasegraphConfig',
 ]
 
 MIDDLEWARE = [
@@ -47,6 +52,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'django_plotly_dash.middleware.BaseMiddleware',
 ]
 
 ROOT_URLCONF = 'mysite.urls'
@@ -68,7 +75,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
-
+ASGI_APPLICATION = 'mysite.routing.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
@@ -118,3 +125,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [('127.0.0.1', 6379),],
+        },
+    },
+}
