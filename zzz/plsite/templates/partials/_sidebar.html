@@ -101,6 +101,12 @@
           <span>Tables</span></a>
       </li>
 
+      <div class="tab">
+          <button class="tablinks" onclick="openCity(event, 'London')">London</button>
+          <button class="tablinks" onclick="openCity(event, 'Paris')">Paris</button>
+          <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+      </div>
+
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 
@@ -111,3 +117,18 @@
 
     </ul>
     <!-- End of Sidebar -->
+    <script>
+        function openCity(evt, cityName) {
+          var i, tabcontent, tablinks;
+          tabcontent = document.getElementsByClassName("tabcontent");
+          for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+          }
+          tablinks = document.getElementsByClassName("tablinks");
+          for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+          }
+          document.getElementById(cityName).style.display = "block";
+          evt.currentTarget.className += " active";
+        }
+    </script>
